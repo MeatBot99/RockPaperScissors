@@ -1,6 +1,7 @@
 let rock = document.getElementById("rock");
     paper = document.getElementById("paper");
     scissors = document.getElementById("scissors");
+    status = document.getElementById("status");
 
 let arr = ["rock", "paper", "scissors"];
 
@@ -21,11 +22,36 @@ function playerPlay(choice){
 
 for (let choice of playerArr){
 choice.addEventListener('click', function(){
-    playerPlay(choice);
-    computerPlay();
+    playerChoice = playerPlay(choice);
+    computerChoice = computerPlay();
+    playRound(playerChoice, computerChoice);
 });
 };
+//TODO: Change console logs into status updates to display in DOM not
+//just in terminal
 
-/*function playRound(playerSelection, computerSelection){
-    console.log("you chose rock")
-};*/
+function playRound(player, computer){
+    switch (player){
+        case "rock":
+            if(computer=="rock"){
+                console.log("draw")
+            } else if (computer=="paper"){
+                console.log("lose");
+            } else {console.log("win")}
+            break;
+        case "paper":
+            if(computer=="rock"){
+                console.log("win")
+            } else if (computer=="paper"){
+                console.log("draw");
+            } else {console.log("lose")}
+            break;
+        case "scissors":
+            if(computer=="rock"){
+                console.log("lose")
+            } else if (computer=="paper"){
+                console.log("win");
+            } else {console.log("draw")}
+            break;
+    }
+};
