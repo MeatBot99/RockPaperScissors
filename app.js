@@ -1,7 +1,7 @@
 let rock = document.getElementById("rock");
     paper = document.getElementById("paper");
     scissors = document.getElementById("scissors");
-    status = document.getElementById("status");
+    result = document.getElementById("result");
 
 let arr = ["rock", "paper", "scissors"];
 
@@ -27,31 +27,49 @@ choice.addEventListener('click', function(){
     playRound(playerChoice, computerChoice);
 });
 };
-//TODO: Change console logs into status updates to display in DOM not
-//just in terminal
+//TODO: Fancy up the result messages and create a counter to keep score.
+//Something like "Computer chose rock, you win!" or something...
+//A random list of things would be better but not needed right now.
+//Best of 5 wins!
+//Also refactor the monster list of if/else statements somehow.
+
+let statusUpdate = function(outcome){
+    result.innerText = "Result: " + outcome;
+};
 
 function playRound(player, computer){
+    let outcome = "";
     switch (player){
         case "rock":
             if(computer=="rock"){
+                outcome = "draw";
                 console.log("draw")
             } else if (computer=="paper"){
+                outcome = "lose";
                 console.log("lose");
-            } else {console.log("win")}
+            } else {outcome = "win";
+                console.log("win")}
             break;
         case "paper":
             if(computer=="rock"){
+                outcome = "win";
                 console.log("win")
             } else if (computer=="paper"){
+                outcome = "draw";
                 console.log("draw");
-            } else {console.log("lose")}
+            } else {outcome = "lose";
+                console.log("lose")}
             break;
         case "scissors":
             if(computer=="rock"){
+                outcome = "lose";
                 console.log("lose")
             } else if (computer=="paper"){
+                outcome = "win";
                 console.log("win");
-            } else {console.log("draw")}
+            } else {outcome = "draw";
+            console.log("draw")}
             break;
     }
+    statusUpdate(outcome);
 };
