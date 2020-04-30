@@ -9,7 +9,9 @@ Open the web document and follow the on screen prompts of choosing your weapon. 
 and they are the namesake of the game.
 
 Rock beats Scissors
+
 Paper beats Rock
+
 Scissors beats Paper
 
 A draw happens when both players (or the computer and player) choose the same weapon; in this case, the round is 
