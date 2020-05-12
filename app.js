@@ -2,16 +2,22 @@ let rock = document.getElementById("rock");
     paper = document.getElementById("paper");
     scissors = document.getElementById("scissors");
     result = document.getElementById("result");
+    report = document.getElementById("report");
 
 let arr = ["rock", "paper", "scissors"];
 
 let playerArr = [rock, paper, scissors];
 
+const numGen = function(lengthOfArray, targetArray){
+    let num = Math.floor(Math.random()*lengthOfArray);
+    nameOfReturn = targetArray[num];
+    return nameOfReturn;
+};
+
 function computerPlay(){
-    let num = Math.floor(Math.random()*3);
-    computerSelection = arr[num];
-    console.log(computerSelection);
-    return computerSelection;
+    numGen(arr.length, arr);
+    console.log(nameOfReturn);
+    return nameOfReturn;
 };
 
 function playerPlay(choice){
@@ -28,13 +34,11 @@ choice.addEventListener('click', function(){
 });
 };
 //TODO: Fancy up the result messages and create a counter to keep score.
-//Something like "Computer chose rock, you win!" or something...
-//A random list of things would be better but not needed right now.
 //Best of 5 wins!
 //Also refactor the monster list of if/else statements somehow.
 
-let statusUpdate = function(outcome){
-    result.innerText = "Result: " + outcome;
+let statusUpdate = function(computer, outcome){
+    result.innerText = "Result: Computer chose "+ computer + ". " + outcome;
 };
 
 function playRound(player, computer){
@@ -42,34 +46,34 @@ function playRound(player, computer){
     switch (player){
         case "rock":
             if(computer=="rock"){
-                outcome = "draw";
+                outcome = numGen(Messages.draw.length, Messages.draw);
                 console.log("draw")
             } else if (computer=="paper"){
-                outcome = "lose";
+                outcome = numGen(Messages.lose.length, Messages.lose);
                 console.log("lose");
-            } else {outcome = "win";
+            } else {outcome = numGen(Messages.win.length, Messages.win);
                 console.log("win")}
             break;
         case "paper":
             if(computer=="rock"){
-                outcome = "win";
+                outcome = numGen(Messages.win.length, Messages.win);
                 console.log("win")
             } else if (computer=="paper"){
-                outcome = "draw";
+                outcome = numGen(Messages.draw.length, Messages.draw);
                 console.log("draw");
-            } else {outcome = "lose";
+            } else {outcome = numGen(Messages.lose.length, Messages.lose);
                 console.log("lose")}
             break;
         case "scissors":
             if(computer=="rock"){
-                outcome = "lose";
+                outcome = numGen(Messages.lose.length, Messages.lose);
                 console.log("lose")
             } else if (computer=="paper"){
-                outcome = "win";
+                outcome = numGen(Messages.win.length, Messages.win);
                 console.log("win");
-            } else {outcome = "draw";
+            } else {outcome = numGen(Messages.draw.length, Messages.draw);
             console.log("draw")}
             break;
     }
-    statusUpdate(outcome);
+    statusUpdate(computer,outcome);
 };
