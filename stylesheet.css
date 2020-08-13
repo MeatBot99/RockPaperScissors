@@ -4,16 +4,19 @@
     margin-right: auto;
     margin-top: 100px;
     background-color: blue;
+    display: inline-block;
     
 }
 
 #container{
     margin-left: auto;
     margin-right: auto;
+    padding: 50px 10px;
     /*width: 400px;*/
     text-align: center;
     display: flexbox;
     flex-wrap: wrap;
+    background-color: whitesmoke;
 }
 
 button {
@@ -24,4 +27,9 @@ button {
 
 #result {
     background-color: blueviolet;
+    display: inline-block;
+}
+
+#headline {
+    display: inline;
 }
