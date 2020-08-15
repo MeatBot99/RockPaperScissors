@@ -3,10 +3,8 @@ let rock = document.getElementById("rock");
     scissors = document.getElementById("scissors");
     result = document.getElementById("result");
     report = document.getElementById("report");
-
-let arr = ["rock", "paper", "scissors"];
-
-let playerArr = [rock, paper, scissors];
+    arr = ["rock", "paper", "scissors"];
+    playerArr = [rock, paper, scissors];
 
 const numGen = function(lengthOfArray, targetArray){
     let num = Math.floor(Math.random()*lengthOfArray);
@@ -36,6 +34,8 @@ choice.addEventListener('click', function(){
 //TODO: Fancy up the result messages and create a counter to keep score.
 //Best of 5 wins!
 //Also refactor the monster list of if/else statements somehow.
+//Sound effects?
+//Victory Defeat and Draw screens/animations
 
 let statusUpdate = function(computer, outcome){
     result.innerText = "Result: Computer chose "+ computer + ". " + outcome;
