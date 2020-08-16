@@ -3,6 +3,10 @@ let rock = document.getElementById("rock");
     scissors = document.getElementById("scissors");
     result = document.getElementById("result");
     report = document.getElementById("report");
+    playerScore = document.getElementById("player-score");
+    playerMatch = document.getElementById("player-matches")
+    computerScore = document.getElementById("computer-score");
+    computerMatch = document.getElementById("computer-matches");
     arr = ["rock", "paper", "scissors"];
     playerArr = [rock, paper, scissors];
 
@@ -10,6 +14,14 @@ const numGen = function(lengthOfArray, targetArray){
     let num = Math.floor(Math.random()*lengthOfArray);
     nameOfReturn = targetArray[num];
     return nameOfReturn;
+};
+
+//Need a number incrementer function. Figure it out. This one doesnt work.
+function incrementScore(score){
+    let targetNumber = score.value;
+    targetNumber ++;
+    score.innerText = targetNumber;
+    return score;
 };
 
 function computerPlay(){
@@ -31,7 +43,8 @@ choice.addEventListener('click', function(){
     playRound(playerChoice, computerChoice);
 });
 };
-//TODO: Fancy up the result messages and create a counter to keep score.
+//TODO: Fancy up the result messages 
+//Create a counter to keep score
 //Best of 5 wins!
 //Also refactor the monster list of if/else statements somehow.
 //Sound effects?
