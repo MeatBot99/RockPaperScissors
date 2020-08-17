@@ -17,12 +17,40 @@ const numGen = function(lengthOfArray, targetArray){
 };
 
 //Need a number incrementer function. Figure it out. This one doesnt work.
-function incrementScore(score){
-    let targetNumber = score.value;
-    targetNumber ++;
-    score.innerText = targetNumber;
-    return score;
+let incrementScore = (function (team, scoreToIncrease){
+    function scoring(){
+        team ++;
+        scoreToIncrease.innerText = team;};
+})();
+
+const playerObj = {
+    currentScore: 0,
+    currentMatches: 0
 };
+
+//This is the MDN example of closure. It works. I need to translate it for use.
+///////////////////////////////////////////////
+var counter = (function() {
+    var privateCounter = 0;
+    function changeBy(val) {
+      privateCounter += val;
+    }
+  
+    return {
+      increment: function() {
+        changeBy(1);
+      },
+  
+      decrement: function() {
+        changeBy(-1);
+      },
+  
+      value: function() {
+        return privateCounter;
+      }
+    };
+  })();
+///////////////////////////////////////////////
 
 function computerPlay(){
     numGen(arr.length, arr);
