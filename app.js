@@ -16,41 +16,24 @@ const numGen = function(lengthOfArray, targetArray){
     return nameOfReturn;
 };
 
-//Need a number incrementer function. Figure it out. This one doesnt work.
-let incrementScore = (function (team, scoreToIncrease){
-    function scoring(){
-        team ++;
-        scoreToIncrease.innerText = team;};
+//This is a working incrementing function with closure. thanks cat clicker//
+let incrementScore = (function(){
+    return function(){
+        this.scorePointer.innerText= this.currentScore +1;
+        this.currentScore++;
+    }
 })();
 
-const playerObj = {
-    currentScore: 0,
-    currentMatches: 0
+let User = function(currentScore, currentMatches, scorePointer, matchPointer){
+    this.currentScore= currentScore;
+    this.currentMatches= currentMatches;
+    this.scorePointer= scorePointer;
+    this.matchPointer= matchPointer;
+    this.incrementScore= incrementScore;
 };
 
-//This is the MDN example of closure. It works. I need to translate it for use.
-///////////////////////////////////////////////
-var counter = (function() {
-    var privateCounter = 0;
-    function changeBy(val) {
-      privateCounter += val;
-    }
-  
-    return {
-      increment: function() {
-        changeBy(1);
-      },
-  
-      decrement: function() {
-        changeBy(-1);
-      },
-  
-      value: function() {
-        return privateCounter;
-      }
-    };
-  })();
-///////////////////////////////////////////////
+let newPlayer= new User(0,0,playerScore, playerMatch);
+let newComputer=  new User(0,0,computerScore, computerMatch);
 
 function computerPlay(){
     numGen(arr.length, arr);
@@ -72,8 +55,9 @@ choice.addEventListener('click', function(){
 });
 };
 //TODO: Fancy up the result messages 
-//Create a counter to keep score
+//~~Create a counter to keep score~~>>>>>>>>>>>>Counter now works
 //Best of 5 wins!
+//use local storage to persist matches won and enable clearing the local storage for a "prestige" reset
 //Also refactor the monster list of if/else statements somehow.
 //Sound effects?
 //Victory Defeat and Draw screens/animations
@@ -91,26 +75,32 @@ function playRound(player, computer){
                 console.log("draw")
             } else if (computer=="paper"){
                 outcome = numGen(Messages.lose.length, Messages.lose);
+                newComputer.incrementScore();
                 console.log("lose");
             } else {outcome = numGen(Messages.win.length, Messages.win);
+                newPlayer.incrementScore();
                 console.log("win")}
             break;
         case "paper":
             if(computer=="rock"){
                 outcome = numGen(Messages.win.length, Messages.win);
+                newPlayer.incrementScore();
                 console.log("win")
             } else if (computer=="paper"){
                 outcome = numGen(Messages.draw.length, Messages.draw);
                 console.log("draw");
             } else {outcome = numGen(Messages.lose.length, Messages.lose);
+                newComputer.incrementScore();
                 console.log("lose")}
             break;
         case "scissors":
             if(computer=="rock"){
                 outcome = numGen(Messages.lose.length, Messages.lose);
+                newComputer.incrementScore();
                 console.log("lose")
             } else if (computer=="paper"){
                 outcome = numGen(Messages.win.length, Messages.win);
+                newPlayer.incrementScore();
                 console.log("win");
             } else {outcome = numGen(Messages.draw.length, Messages.draw);
             console.log("draw")}
