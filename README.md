@@ -4,6 +4,8 @@ Odin Project exercise for a simple **Rock, Paper, Scissors** game that is suppos
 
 Additions have been made to display the results of each match in the browser itself.
 
+Score keeping functionality is under construction.
+
 ## Use:
 Open the web document and follow the on screen prompts of choosing your weapon. There are only three available, 
 and they are the namesake of the game.

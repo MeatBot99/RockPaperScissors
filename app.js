@@ -9,31 +9,34 @@ let rock = document.getElementById("rock");
     computerMatch = document.getElementById("computer-matches");
     arr = ["rock", "paper", "scissors"];
     playerArr = [rock, paper, scissors];
+    incrementScore = (function(){
+    return function(){
+        this.scorePointer.innerText= this.currentScore +1;
+        this.currentScore++;
+    }
+})();
+    incrementMatch = (function(){
+    return function(){
+        this.matchPointer.innerText= this.currentMatches +1;
+        this.currentMatches++;
+    }
+})();
+    User = function(currentScore, currentMatches, scorePointer, matchPointer){
+    this.currentScore = currentScore;
+    this.currentMatches = currentMatches;
+    this.scorePointer = scorePointer;
+    this.matchPointer = matchPointer;
+    this.incrementScore = incrementScore;
+    this.incrementMatch = incrementMatch;
+};
+    newPlayer= new User(0,0,playerScore, playerMatch);
+    newComputer=  new User(0,0,computerScore, computerMatch);
 
 const numGen = function(lengthOfArray, targetArray){
     let num = Math.floor(Math.random()*lengthOfArray);
     nameOfReturn = targetArray[num];
     return nameOfReturn;
 };
-
-//This is a working incrementing function with closure. thanks cat clicker//
-let incrementScore = (function(){
-    return function(){
-        this.scorePointer.innerText= this.currentScore +1;
-        this.currentScore++;
-    }
-})();
-
-let User = function(currentScore, currentMatches, scorePointer, matchPointer){
-    this.currentScore= currentScore;
-    this.currentMatches= currentMatches;
-    this.scorePointer= scorePointer;
-    this.matchPointer= matchPointer;
-    this.incrementScore= incrementScore;
-};
-
-let newPlayer= new User(0,0,playerScore, playerMatch);
-let newComputer=  new User(0,0,computerScore, computerMatch);
 
 function computerPlay(){
     numGen(arr.length, arr);
@@ -64,6 +67,13 @@ choice.addEventListener('click', function(){
 
 let statusUpdate = function(computer, outcome){
     result.innerText = "Result: Computer chose "+ computer + ". " + outcome;
+
+    //This incrementing is not working/has unpredictable calls.
+    /*if (newPlayer.currentScore%5==0){
+        newPlayer.incrementMatch();
+    }if (newComputer.currentScore%5==0){
+        newComputer.incrementMatch();
+    }*/
 };
 
 function playRound(player, computer){
