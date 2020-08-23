@@ -42,5 +42,17 @@ button {
     color: blue;
 }
 
+#player-score, #player-matches, #computer-score, #computer-matches{
+    display:inline-block;
+}
 
+@media screen and (width <= 984px){
+    .sidebar, #buttonholder{
+        width: 100%;
+    }
+
+    .sidebar {
+        padding: 5px;
+    }
+}
 
