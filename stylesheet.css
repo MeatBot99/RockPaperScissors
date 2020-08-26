@@ -46,7 +46,7 @@ button {
     display:inline-block;
 }
 
-@media screen and (width <= 984px){
+@media screen and (width <= 970px){
     .sidebar, #buttonholder{
         width: 100%;
     }
@@ -55,4 +55,3 @@ button {
         padding: 5px;
     }
 }
-

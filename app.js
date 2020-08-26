@@ -7,6 +7,8 @@ let rock = document.getElementById("rock");
     playerMatch = document.getElementById("player-matches")
     computerScore = document.getElementById("computer-score");
     computerMatch = document.getElementById("computer-matches");
+    sidebarLeft = document.getElementById("sidebar-left");
+    sidebarRight = document.getElementById("sidebar-right");
     arr = ["rock", "paper", "scissors"];
     playerArr = [rock, paper, scissors];
     incrementScore = (function(){
@@ -32,6 +34,14 @@ let rock = document.getElementById("rock");
         this.scorePointer.classList.remove("animate__bounceInDown");
     });
 };
+    animateDraw = function(){sidebarLeft.classList.toggle("animate__headShake");
+    sidebarRight.classList.toggle("animate__headShake");
+    sidebarLeft.addEventListener('animationend', ()=>{
+        sidebarLeft.classList.remove("animate__headShake");
+        sidebarRight.classList.remove("animate__headShake");
+    })
+
+};
     User = function(currentScore, currentMatches, scorePointer, matchPointer){
     this.currentScore = currentScore;
     this.currentMatches = currentMatches;
@@ -46,7 +56,7 @@ let rock = document.getElementById("rock");
     newComputer=  new User(0,0,computerScore, computerMatch);
 
 //Adds animation class to the scores//
-    classData = [playerScore, playerMatch, computerScore, computerMatch];
+    classData = [playerScore, playerMatch, computerScore, computerMatch,sidebarLeft,sidebarRight];
     for(let _data of classData){
         _data.classList.add("animate__animated");
     };
@@ -94,6 +104,7 @@ function playRound(player, computer){
         case "rock":
             if(computer=="rock"){
                 outcome = numGen(Messages.draw.length, Messages.draw);
+                animateDraw();
             } else if (computer=="paper"){
                 outcome = numGen(Messages.lose.length, Messages.lose);
                 newComputer.incrementScore();
@@ -113,6 +124,7 @@ function playRound(player, computer){
                 newPlayer.animateScore();
             } else if (computer=="paper"){
                 outcome = numGen(Messages.draw.length, Messages.draw);
+                animateDraw();
             } else {outcome = numGen(Messages.lose.length, Messages.lose);
                 newComputer.incrementScore();
                 newComputer.updateMatch();
@@ -131,7 +143,8 @@ function playRound(player, computer){
                 newPlayer.updateMatch();
                 newPlayer.animateScore();
             } else {outcome = numGen(Messages.draw.length, Messages.draw);
-            }
+                animateDraw();
+                }
             break;
     };
     statusUpdate(computer,outcome);
